@@ -6,7 +6,10 @@
   --text-dark: #1c1c1c;
   --navbar-height: 60px;
   --hex-border: #d3dee9;
-  --hero-image: url('images/hero.jpg'); /* each page overrides this one line */
+  --hero-image: url('images/hero.jpg'); /* homepage default — subpages should override
+    .hero-wrap::before { background-image: url(...) } directly instead of this
+    variable, since url()s in a custom property resolve against the stylesheet
+    that declares the property (this file), not the page overriding it. */
 }
 
 * {
