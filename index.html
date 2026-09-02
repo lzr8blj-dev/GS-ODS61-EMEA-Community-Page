@@ -104,66 +104,84 @@
   height: auto;
 }
 
+/* Hotspot positions are percentages of the image's own box (1920x1080 source),
+   so they stay aligned to the artwork at any screen width instead of only
+   matching the fixed layout Bosch Connect happened to render at. */
 .image-buttons {
   position: absolute;
-  top: 58px; /* Move to top */
-  right: 17%; /* Keep right alignment, adjust as needed */
+  top: 5.37%; /* was 58px / 1080px image height */
+  right: 17%;
+  width: 13.02%; /* was 250px / 1920px image width */
+  height: 20%; /* was 216px / 1080px image height */
   display: flex;
-  flex-direction: column; /* Stack buttons */
-  gap: 10px; /* Space between them */
+  flex-direction: column;
+  gap: 10px;
   align-items: flex-end;
 }
 
 .image-buttons2 {
   position: absolute;
-  top: 217px; /* Move to top */
-  right: 4.5%; /* Keep right alignment, adjust as needed */
+  top: 20.09%; /* was 217px / 1080px image height */
+  right: 4.5%;
+  width: 13.02%;
+  height: 20%;
   display: flex;
-  flex-direction: column; /* Stack buttons */
-  gap: 10px; /* Space between them */
+  flex-direction: column;
+  gap: 10px;
   align-items: flex-end;
 }
 
-.image-buttons a {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 250px; /* Increased size */
-  height: 216px; /* Increased size */
-  background-color: #0071b3;
-  color: white !important;
-  text-decoration: none;
-  font-family: Arial, sans-serif;
-  font-size: 20px; /* Larger font for readability */
-  font-weight: 500;
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  transition: background-color 0.3s ease;
-  opacity: 0;
-}
-
+.image-buttons a,
 .image-buttons2 a {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 250px; /* Increased size */
-  height: 216px; /* Increased size */
+  width: 100%;
+  height: 100%;
   background-color: #0071b3;
   color: white !important;
   text-decoration: none;
   font-family: Arial, sans-serif;
-  font-size: 20px; /* Larger font for readability */
+  font-size: 20px;
   font-weight: 500;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
   transition: background-color 0.3s ease;
   opacity: 0;
 }
 
-.image-buttons a:hover {
+.image-buttons a:hover,
+.image-buttons2 a:hover {
   background-color: #005a8c;
   color: white !important;
   opacity: 0;
+}
+
+/* Mobile: dropdowns rely on :hover, which touch screens don't have well,
+   and the navbar has no room for 7 items in a row on a narrow screen.
+   Stack the nav vertically and let dropdowns open on tap instead. */
+@media (max-width: 700px) {
+  .navbar {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .navbar > div {
+    margin: 4px 10px;
+    padding: 6px 0;
+  }
+
+  .dropdown-content {
+    position: static;
+    box-shadow: none;
+    min-width: 0;
+  }
+
+  .dropdown:hover .dropdown-content,
+  .dropdown:focus-within .dropdown-content {
+    display: block;
+  }
 }
 </style>
 </head>
