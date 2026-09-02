@@ -187,12 +187,12 @@ a.dropdown-item {
 .hero-wrap::before {
   content: "";
   position: absolute;
-  inset: -30px; /* overscan so the blur never shows a hard edge */
+  inset: -60px; /* overscan so the blur never shows a hard edge */
   background-image: var(--hero-image);
   background-size: cover;
   background-position: center;
-  filter: blur(40px) brightness(0.94) saturate(1.05);
-  transform: scale(1.15);
+  filter: blur(70px) brightness(0.92) saturate(1.1);
+  transform: scale(1.35);
   z-index: 0;
 }
 
