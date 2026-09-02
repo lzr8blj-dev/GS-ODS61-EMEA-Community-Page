@@ -11,7 +11,8 @@
     --border-grey: #d8dde2;
     --bg-grey: #f6f7f8;
     --text-dark: #1c1c1c;
-    --navbar-height: 56px;
+    --navbar-height: 60px;
+    --hex-border: #d3dee9;
   }
 
   * {
@@ -37,7 +38,7 @@
   /* ---------- Navbar ---------- */
   .brand-bar {
     flex: 0 0 4px;
-    background-color: var(--bosch-blue);
+    background: linear-gradient(90deg, var(--bosch-blue), #3d94c9);
   }
 
   .navbar {
@@ -45,31 +46,124 @@
     height: var(--navbar-height);
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 4px;
+    justify-content: space-between;
     background-color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-    padding: 0 24px;
-    white-space: nowrap;
-    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(15, 40, 60, 0.08);
+    padding: 0 28px;
+    position: relative;
+    z-index: 20;
   }
 
-  .navbar .nav-item {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-size: 14.5px;
+  .navbar .brand-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--bosch-blue);
+    letter-spacing: 0.2px;
+  }
+
+  .navbar .nav-items {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    height: 100%;
+  }
+
+  .nav-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .nav-item > .nav-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0 14px;
+    height: 100%;
+    font-size: 14px;
     color: #3a3f44;
     cursor: default; /* not clickable yet, links coming later */
+  }
+
+  .nav-item > .nav-label::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 8px;
+    height: 2px;
+    background-color: var(--bosch-blue);
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+  }
+
+  .nav-item:hover > .nav-label {
+    color: var(--bosch-blue-dark);
+  }
+
+  .nav-item:hover > .nav-label::after {
+    transform: scaleX(1);
+  }
+
+  .nav-item .chevron {
+    width: 8px;
+    height: 8px;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.25s ease;
+    margin-top: -2px;
+  }
+
+  .nav-item:hover .chevron {
+    transform: rotate(-135deg);
+    margin-top: 2px;
+  }
+
+  /* Dropdown panel */
+  .dropdown-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -6px);
+    min-width: 210px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(15, 40, 60, 0.16);
+    padding: 8px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  }
+
+  .nav-item:hover .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+
+  .dropdown-panel .dropdown-item {
+    display: block;
+    padding: 9px 12px;
+    border-radius: 5px;
+    font-size: 13.5px;
+    color: #3a3f44;
+    cursor: default; /* placeholder — real links coming later */
     transition: background-color 0.15s ease, color 0.15s ease;
   }
 
-  .navbar .nav-item:hover {
+  .dropdown-panel .dropdown-item:hover {
     background-color: #eaf3fb;
     color: var(--bosch-blue-dark);
   }
 
   /* ---------- Hero ---------- */
   .hero-wrap {
+    position: relative;
     flex: 1 1 auto;
     display: flex;
     align-items: center;
@@ -80,11 +174,25 @@
     padding: 12px;
   }
 
+  .hero-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -30px; /* overscan so the blur never shows a hard edge */
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: blur(40px) brightness(0.94) saturate(1.05);
+    transform: scale(1.15);
+    z-index: 0;
+  }
+
   .hero {
     position: relative;
+    z-index: 1;
     aspect-ratio: 1920 / 1080; /* locks to the image's real proportions */
     max-width: 100%;
     max-height: 100%;
+    box-shadow: 0 12px 40px rgba(15, 40, 60, 0.18);
   }
 
   .hero img {
@@ -99,6 +207,12 @@
     position: absolute;
     display: block;
     text-decoration: none;
+    transition: transform 0.25s ease, filter 0.25s ease;
+  }
+
+  .hotspot:hover {
+    transform: scale(1.06);
+    filter: drop-shadow(0 8px 16px rgba(0, 113, 179, 0.28));
   }
 
   .hotspot--feedback {
@@ -119,14 +233,14 @@
     display: block;
     width: 100%;
     height: 100%;
-    background-color: var(--bosch-blue);
+    background-color: var(--hex-border);
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    transition: background-color 0.2s ease;
+    transition: background-color 0.25s ease;
   }
 
   .hotspot .hex-fill {
     position: absolute;
-    inset: 8px; /* thicker border band, was 3px */
+    inset: 5px; /* thinner border band, was 8px */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -149,11 +263,11 @@
   }
 
   .hotspot:hover .hex-border {
-    background-color: var(--bosch-blue-dark);
+    background-color: var(--bosch-blue);
   }
 
   /* ---------- Small screens: relax the no-scroll rule so content isn't crushed ---------- */
-  @media (max-width: 600px) {
+  @media (max-width: 700px) {
     html, body {
       overflow-y: auto;
       height: auto;
@@ -162,7 +276,31 @@
     .navbar {
       flex-wrap: wrap;
       height: auto;
-      padding: 8px 12px;
+      padding: 10px 14px;
+    }
+
+    .navbar .brand-label {
+      margin-bottom: 6px;
+    }
+
+    .nav-items {
+      flex-wrap: wrap;
+      height: auto;
+    }
+
+    .dropdown-panel {
+      position: static;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: none;
+      box-shadow: none;
+      display: none;
+      min-width: 0;
+    }
+
+    .nav-item:hover .dropdown-panel {
+      display: block;
     }
 
     .hero-wrap {
@@ -175,13 +313,50 @@
 
 <div class="brand-bar"></div>
 <nav class="navbar">
-  <span class="nav-item">Home</span>
-  <span class="nav-item">Who we are</span>
-  <span class="nav-item">Services &amp; Solutions</span>
-  <span class="nav-item">Global Footprint</span>
-  <span class="nav-item">Resources &amp; Processes</span>
-  <span class="nav-item">News</span>
-  <span class="nav-item">Support &amp; FAQ</span>
+  <span class="brand-label">Global Business Services</span>
+  <div class="nav-items">
+    <div class="nav-item">
+      <span class="nav-label">Home</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">Who we are <span class="chevron"></span></span>
+      <div class="dropdown-panel">
+        <span class="dropdown-item">Mission and Vision</span>
+        <span class="dropdown-item">Growth Story</span>
+        <span class="dropdown-item">Our Team</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">Services &amp; Solutions <span class="chevron"></span></span>
+      <div class="dropdown-panel">
+        <span class="dropdown-item">Service Overview</span>
+        <span class="dropdown-item">Partners and Collaboration</span>
+        <span class="dropdown-item">Performance Insights</span>
+        <span class="dropdown-item">Financial Contribution</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">Global Footprint <span class="chevron"></span></span>
+      <div class="dropdown-panel">
+        <span class="dropdown-item">Global Teams Map</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">Resources &amp; Processes <span class="chevron"></span></span>
+      <div class="dropdown-panel">
+        <span class="dropdown-item">Operational Framework</span>
+        <span class="dropdown-item">Training Bootcamp</span>
+        <span class="dropdown-item">Onboarding App</span>
+        <span class="dropdown-item">Bosch Learning Space</span>
+      </div>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">News</span>
+    </div>
+    <div class="nav-item">
+      <span class="nav-label">Support &amp; FAQ</span>
+    </div>
+  </div>
 </nav>
 
 <div class="hero-wrap">
