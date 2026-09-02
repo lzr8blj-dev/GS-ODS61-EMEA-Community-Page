@@ -21,9 +21,9 @@
   html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100dvh;
     width: 100%;
-    overflow: hidden; /* the whole page never scrolls */
+    overflow: clip; /* stronger than hidden — guarantees no scrollbar */
     font-family: Arial, Helvetica, sans-serif;
     color: var(--text-dark);
   }
@@ -31,32 +31,41 @@
   body {
     display: flex;
     flex-direction: column;
+    height: 100dvh;
   }
 
   /* ---------- Navbar ---------- */
+  .brand-bar {
+    flex: 0 0 4px;
+    background-color: var(--bosch-blue);
+  }
+
   .navbar {
     flex: 0 0 var(--navbar-height);
     height: var(--navbar-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 4px;
     background-color: #ffffff;
-    border-bottom: 1px solid var(--border-grey);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
     padding: 0 24px;
+    white-space: nowrap;
+    overflow-x: auto;
   }
 
   .navbar .nav-item {
     padding: 8px 16px;
-    font-size: 15px;
-    color: var(--text-dark);
-    border-bottom: 2px solid transparent;
+    border-radius: 4px;
+    font-size: 14.5px;
+    color: #3a3f44;
     cursor: default; /* not clickable yet, links coming later */
+    transition: background-color 0.15s ease, color 0.15s ease;
   }
 
   .navbar .nav-item:hover {
-    color: var(--bosch-blue);
-    border-bottom-color: var(--bosch-blue);
+    background-color: #eaf3fb;
+    color: var(--bosch-blue-dark);
   }
 
   /* ---------- Hero ---------- */
@@ -67,13 +76,12 @@
     justify-content: center;
     background-color: var(--bg-grey);
     min-height: 0; /* allows flexbox to actually shrink this on short screens */
+    overflow: hidden;
     padding: 12px;
   }
 
   .hero {
     position: relative;
-    width: 100%;
-    height: 100%;
     aspect-ratio: 1920 / 1080; /* locks to the image's real proportions */
     max-width: 100%;
     max-height: 100%;
@@ -83,7 +91,7 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover; /* box already matches the image's own ratio */
   }
 
   /* ---------- Hexagon hotspots ---------- */
@@ -118,7 +126,7 @@
 
   .hotspot .hex-fill {
     position: absolute;
-    inset: 3px;
+    inset: 8px; /* thicker border band, was 3px */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,8 +143,9 @@
   }
 
   .hotspot .hex-icon {
-    font-size: 26px;
-    line-height: 1;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
   }
 
   .hotspot:hover .hex-border {
@@ -164,6 +173,7 @@
 </head>
 <body>
 
+<div class="brand-bar"></div>
 <nav class="navbar">
   <span class="nav-item">Home</span>
   <span class="nav-item">Who we are</span>
@@ -180,12 +190,20 @@
 
     <a class="hotspot hotspot--feedback" href="https://boschdigital.qualtrics.com/jfe/form/SV_et9eWrQTWuzZym2?Referrer=rb-ux-studio&amp;Offering=Planning+as+a+Service&amp;OfferingID=FB-0000443&amp;Source=Email&amp;SourceCategory=Use&amp;Stage=Prod&amp;SurveyStyle=Fullscreen&amp;FeedbackReceiverRegionID=EMEA" target="_blank" rel="noopener">
       <span class="hex-border"></span>
-      <span class="hex-fill"><span class="hex-icon" aria-hidden="true">👍</span>Feedback</span>
+      <span class="hex-fill">
+        <!-- TODO: replace with your own icon, e.g. images/icon-feedback.png -->
+        <img class="hex-icon" src="images/icon-placeholder.svg" alt="" />
+        Feedback
+      </span>
     </a>
 
     <a class="hotspot hotspot--book" href="mailto:Paul.Oancea@ro.bosch.com?subject=Booking Inquiry&amp;body=Hello, I would like to book your services.">
       <span class="hex-border"></span>
-      <span class="hex-fill"><span class="hex-icon" aria-hidden="true">🎖️</span>Book our services</span>
+      <span class="hex-fill">
+        <!-- TODO: replace with your own icon, e.g. images/icon-booking.png -->
+        <img class="hex-icon" src="images/icon-placeholder.svg" alt="" />
+        Book our services
+      </span>
     </a>
   </div>
 </div>
