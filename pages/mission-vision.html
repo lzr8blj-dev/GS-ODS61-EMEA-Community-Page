@@ -6,10 +6,13 @@
 <title>Mission and Vision — Global Business Services</title>
 <link rel="stylesheet" href="../styles.css" />
 <style>
-  /* This page's hero image lives one folder deeper than the homepage's,
-     so only the blurred backdrop path needs overriding here. */
-  :root {
-    --hero-image: url('images/mission-vision.png');
+  /* Overriding the rule directly here (not via the --hero-image variable) —
+     url()s inside a custom property resolve against the stylesheet that
+     DECLARES the property that consumes it (styles.css, at the project root),
+     not the page that overrides the variable. That silently pointed this
+     backdrop at the wrong path. Writing the whole rule here avoids that. */
+  .hero-wrap::before {
+    background-image: url('images/mission-vision.png');
   }
 </style>
 </head>
