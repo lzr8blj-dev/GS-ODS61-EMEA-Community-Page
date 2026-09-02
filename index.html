@@ -27,7 +27,7 @@
   display: flex;
   justify-content: center;
   background-color: #f1f1f1;
-  padding: 0;
+  padding: 0 24px;
   font-family: Arial, sans-serif;
   font-size: 16px;
   height: 40px;
@@ -141,25 +141,33 @@ html, body {
 .image-buttons a,
 .image-buttons2 a {
   position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #a9cbe6; /* acts as the hexagon "border" color */
+  text-decoration: none;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.image-buttons a .hex-fill,
+.image-buttons2 a .hex-fill {
+  position: absolute;
+  inset: 3px; /* thickness of the visible border */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.92);
-  border: 2px solid #a9cbe6;
-  color: #0071b3 !important;
-  text-decoration: none;
+  background-color: rgba(255, 255, 255, 0.96);
+  color: #0071b3;
   text-align: center;
   font-family: Arial, sans-serif;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.2;
   clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
-  box-sizing: border-box;
 }
 
 .image-buttons a .hotspot-icon,
@@ -170,8 +178,7 @@ html, body {
 
 .image-buttons a:hover,
 .image-buttons2 a:hover {
-  background-color: #eaf3fb;
-  border-color: #0071b3;
+  background-color: #0071b3;
 }
 
 /* Mobile: dropdowns rely on :hover, which touch screens don't have well,
@@ -224,8 +231,8 @@ html, body {
 
 <div class="image-container" dir="ltr">
 <img src="images/hero.jpg" alt="GBS Global Business Services hero graphic" />
-<div class="image-buttons"><a href="https://boschdigital.qualtrics.com/jfe/form/SV_et9eWrQTWuzZym2?Referrer=rb-ux-studio&amp;Offering=Planning+as+a+Service&amp;OfferingID=FB-0000443&amp;Source=Email&amp;SourceCategory=Use&amp;Stage=Prod&amp;SurveyStyle=Fullscreen&amp;FeedbackReceiverRegionID=EMEA" target="_blank" rel="noopener"><span class="hotspot-icon" aria-hidden="true">👍</span>Feedback</a></div>
-<div class="image-buttons2"><a href="mailto:Paul.Oancea@ro.bosch.com?subject=Booking Inquiry&amp;body=Hello, I would like to book your services."><span class="hotspot-icon" aria-hidden="true">🎖️</span>Book our services</a></div>
+<div class="image-buttons"><a href="https://boschdigital.qualtrics.com/jfe/form/SV_et9eWrQTWuzZym2?Referrer=rb-ux-studio&amp;Offering=Planning+as+a+Service&amp;OfferingID=FB-0000443&amp;Source=Email&amp;SourceCategory=Use&amp;Stage=Prod&amp;SurveyStyle=Fullscreen&amp;FeedbackReceiverRegionID=EMEA" target="_blank" rel="noopener"><span class="hex-fill"><span class="hotspot-icon" aria-hidden="true">👍</span>Feedback</span></a></div>
+<div class="image-buttons2"><a href="mailto:Paul.Oancea@ro.bosch.com?subject=Booking Inquiry&amp;body=Hello, I would like to book your services."><span class="hex-fill"><span class="hotspot-icon" aria-hidden="true">🎖️</span>Book our services</span></a></div>
 </div>
 
 </body>
