@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GBS Team Page</title>
+<style>
+/* Blue top bar */
+.topbar {
+  background-color: #0071b3;
+  padding: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Search bar */
+.search-box input[type="text"] {
+  width: 600px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+/* Grey navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #f1f1f1;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  height: 40px;
+  align-items: center;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Nav items - applied to all direct divs in navbar */
+.navbar > div {
+  position: relative;
+  margin: 0 15px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: border-bottom 0.3s ease;
+  display: flex;
+  justify-content: center;
+}
+
+/* Hover underline */
+.navbar > div:hover {
+  border-bottom: 2px solid #005691;
+}
+
+/* Dropdown menu */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  top: 38px;
+  left: 0;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  min-width: 240px;
+  z-index: 1000;
+}
+
+/* Dropdown links with highlight effect */
+.dropdown-content a {
+  display: block;
+  padding: 10px 15px;
+  color: #005691;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.3s ease, color 0.3s ease, font-weight 0.3s ease, border-left 0.3s ease;
+}
+
+/* Hover highlight on dropdown items */
+.dropdown-content a:hover {
+  background-color: #d9ecf7;
+  color: #000;
+  font-weight: bold;
+  border-left: 4px solid #0071b3;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+  max-width: 100%;
+}
+
+.image-container img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+.image-buttons {
+  position: absolute;
+  top: 58px; /* Move to top */
+  right: 17%; /* Keep right alignment, adjust as needed */
+  display: flex;
+  flex-direction: column; /* Stack buttons */
+  gap: 10px; /* Space between them */
+  align-items: flex-end;
+}
+
+.image-buttons2 {
+  position: absolute;
+  top: 217px; /* Move to top */
+  right: 4.5%; /* Keep right alignment, adjust as needed */
+  display: flex;
+  flex-direction: column; /* Stack buttons */
+  gap: 10px; /* Space between them */
+  align-items: flex-end;
+}
+
+.image-buttons a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px; /* Increased size */
+  height: 216px; /* Increased size */
+  background-color: #0071b3;
+  color: white !important;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 20px; /* Larger font for readability */
+  font-weight: 500;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: background-color 0.3s ease;
+  opacity: 0;
+}
+
+.image-buttons2 a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px; /* Increased size */
+  height: 216px; /* Increased size */
+  background-color: #0071b3;
+  color: white !important;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  font-size: 20px; /* Larger font for readability */
+  font-weight: 500;
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  transition: background-color 0.3s ease;
+  opacity: 0;
+}
+
+.image-buttons a:hover {
+  background-color: #005a8c;
+  color: white !important;
+  opacity: 0;
+}
+</style>
+</head>
+<body>
+
+<div class="navbar" dir="ltr">
+<div>Home</div>
+<div class="dropdown">Who we are
+<div class="dropdown-content"><a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Mission%20and%20Vision" target="_blank" rel="noopener">Mission and Vision</a> <a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Growth%20Story" target="_blank" rel="noopener">Growth Story</a> <a href="https://bgn.bosch.com/FIRSTspiritWeb/wcms/wcms_rgeu/en/bosch-globalnet/02-organization/regional-subsidiaries-rg/romania/03-locations/blaj/bosch-automotive/blaj-organization/commercial-departments/bljplop/gsosd6-emea/gsosd6-emea.html" target="_blank" rel="noopener">Our Team</a></div>
+</div>
+<div class="dropdown">Services &amp; Solutions
+<div class="dropdown-content"><a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Service%20Overview" target="_blank" rel="noopener">Service Overview</a> <a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Partners%20and%20Collaboration" target="_blank" rel="noopener">Partners and Collaboration</a> <a href="https://rb-ux-studio-fe.de.bosch.com/projects/feedbackhub/" target="_blank" rel="noopener">Performance Insights</a> <a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Cost" target="_blank" rel="noopener">Financial Contribution</a></div>
+</div>
+<div class="dropdown">Global Footprint
+<div class="dropdown-content"><a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Global%20Footprint" target="_blank" rel="noopener">Global Teams Map</a></div>
+</div>
+<div class="dropdown">Resources &amp; Processes
+<div class="dropdown-content"><a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Operational%20Framework" target="_blank" rel="noopener">Operational Framework</a> <a href="https://connect.bosch.com/wikis/home?lang=en-us#!/wiki/We94ce24e217b_420c_a9ad_1e0b44baf686/page/Training%20Bootcamp" target="_blank" rel="noopener">Training Bootcamp</a> <a href="https://apps.powerapps.com/play/e/6176e3c3-97a0-e3fd-8f23-8d8351f18b43/a/b4f41e0f-18bd-4aff-b387-453e686d97dd?tenantId=0ae51e19-07c8-4e4b-bb6d-648ee58410f4&amp;hint=ad1fef9c-4121-4f58-83ec-02566cdaf062&amp;sourcetime=1739194127039&amp;source=teamsLinkUnfurling#" target="_blank" rel="noopener">Onboarding App</a> <a href="https://rb-boschlearningspace.bosch.com/accelerator/dispatch.do?preview=false&amp;node=14346&amp;preview=false">Bosch Learning Space</a></div>
+</div>
+<div><a href="https://connect.bosch.com/blogs/4a836d35-b14a-4252-9b8a-7e52589c54d2/entry/Blog_overview" target="_blank" rel="noopener">News</a></div>
+<div>Support &amp; FAQ</div>
+</div>
+
+<div class="image-container" dir="ltr">
+<img src="images/hero.jpg" alt="GBS Global Business Services hero graphic" />
+<div class="image-buttons"><a href="https://boschdigital.qualtrics.com/jfe/form/SV_et9eWrQTWuzZym2?Referrer=rb-ux-studio&amp;Offering=Planning+as+a+Service&amp;OfferingID=FB-0000443&amp;Source=Email&amp;SourceCategory=Use&amp;Stage=Prod&amp;SurveyStyle=Fullscreen&amp;FeedbackReceiverRegionID=EMEA" target="_blank" rel="noopener">Click Me</a></div>
+<div class="image-buttons2"><a href="mailto:Paul.Oancea@ro.bosch.com?subject=Booking Inquiry&amp;body=Hello, I would like to book your services.">Click Me2</a></div>
+</div>
+
+</body>
+</html>
